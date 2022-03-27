@@ -44,4 +44,10 @@ extern void dir_free(struct dir *dir);
 */
 extern void dir_print(struct dir *dir);
 
+/*retourner le nom du contact*/
+extern char *recupere_nom(struct contact *contact);
+
+/*Retourne le numéro du contact passé.*/
+extern char *recupere_numero(struct contact *contact);
+
 #endif /* _DIRECTORY_H_ */
