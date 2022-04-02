@@ -140,7 +140,7 @@ char *dir_insert(struct dir *dir, const char *name, const char *num)
 
     if (dir == NULL){
       printf("directory est vide \n");
-      return;
+      return 0;
     }
     char *copie_numero = NULL;
     uint32_t key_hash = hash(name, dir->TAILLE_TABLE);
