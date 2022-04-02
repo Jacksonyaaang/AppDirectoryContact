@@ -39,7 +39,7 @@ void insertion_contact(struct contact **list, struct contact *contact)
     if (contact == NULL)
     {
         printf("contact inséré est vide\n");
-        return 0;
+        return;
     }
     contact->next = *list;   // *list = @ de la tête
     *list = contact;
