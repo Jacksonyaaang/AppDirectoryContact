@@ -8,7 +8,7 @@ Par alleurs, pour bien distinguer les sections d'un annuaire, j'ai ajouté les c
 
 Si vous utilisez macos et trouvez vous que le "make" ne fonctionne pas, c'est normal due au problème de configuration, il vous faut utiliser une machine sur linux puis retester.
 
-Enfin, si vous vouslez effacer les fichiers exécutables générés, tappez "make clean" sur le repertoire où vous tappez "make" en début sur le terminal.
+Enfin, si vous voulez effacer les fichiers exécutables générés, tappez "make clean" sur le repertoire où vous tappez "make" en début sur le terminal.
 
 Pour trouver les fichier .c , ils sont dans le "/src" , les .h sont dans le "/include"
 
