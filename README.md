@@ -10,4 +10,8 @@ Si vous utilisez macos et trouvez vous que le "make" ne fonctionne pas, c'est no
 
 Enfin, si vous vouslez effacer les fichiers exécutables générés, tappez "make clean" sur le repertoire où vous tappez "make" en début sur le terminal.
 
+Pour trouver les fichier .c , ils sont dans le "/src" , les .h sont dans le "/include"
+
+Je vous remercie de votre attention.
+
 Si il y a des questions, contactez le mail: jiaxuan.yang@grenoble-inp.org
