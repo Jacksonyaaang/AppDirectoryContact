@@ -1,5 +1,6 @@
 #ifndef _CONTACT_H_
 #define _CONTACT_H_
+#include<stdio.h>
 
 /*
   Un contact représente une association {nom, numéro}.
@@ -17,7 +18,7 @@ extern struct contact *supprime_liste(struct contact **list, const char *nom);
 
 /*supprimer le tête de la liste de contactet retourner lequel supprimé*/
 extern struct contact *supprime_contact(struct contact **list);
-
+ 
 /*cherche un contact dans la liste*/
 extern struct contact *cherche_contact(struct contact *list, const char *name, struct contact **precedent);
 
@@ -29,13 +30,27 @@ extern void free_list_contact(struct contact *list);
 /*afficher la liste*/
 extern void print_list(struct contact *list);
 
+/*print avec les couleurs pour distinquer les sections de dir*/
+extern void red();
+extern void rouge();
+extern void green();   //pour le fond
+extern void vert();    //caractère
+extern void cyon();
+extern void light_blue();
+extern void sous_ligne();
+extern void reset();
+
 
 /*mettre a jour les contenud d'un contact*/
 
-extern void *changer_nom(struct contact *contact, const char *name);//mettre a jour le nom d'un contact
+extern char *changer_nom(struct contact *contact, const char *name);//mettre a jour le nom d'un contact
 
 extern void *changer_numero(struct contact *contact, const char *num);//mettre a jour le numéro d'un contact
 
+/*retourner le nom du contact*/
+extern char *recupere_nom(struct contact *contact);
 
+/*Retourne le numéro du contact passé.*/
+extern char *recupere_numero(struct contact *contact);
 
 #endif /* _CONTACT_H_ */

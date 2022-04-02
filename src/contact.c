@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <contact.h>
+
 
 /*le struct d'un contact*/
 struct contact{
-	char *nom;   //un pointeur qui est vers le nom
+	char *nom;   //un pointeur qui est vers le nom, plus meilleur à utiliser le mem.
 	char *numero;
 	struct contact *next;
 };
@@ -14,15 +16,13 @@ struct contact{
 //pour créer un nouveau contact
 struct contact *genere_contact(const char *name, const char *num)
 {
-    uint32_t len_nouv_nom = strlen(name);
-    char *nouv_nom = malloc((len_nouv_nom+1)*sizeof(*nouv_nom)); 
-    //allouer un espace mémoire pour le pointeur nouv_nom, +1 ==> pr \0
-    strcpy(nouv_nom, name);  //copier le contenu de name au *nouv_nom
-
     //faire la meme chose pour la section "numéro"
-    uint32_t len_nouv_num = strlen(num);
-    char *nouv_num = malloc((len_nouv_num+1)*sizeof(*nouv_num));
-    strcpy(nouv_num, num);
+    /*allouer un espace mémoire pour le pointeur nouv_num, +1 ==> pr \0*/
+    char *nouv_num = malloc((strlen(num)+1)*sizeof(*nouv_num));
+    strcpy(nouv_num, num); //copier le contenu de name au *nouv_nom
+    char *nouv_nom = malloc((strlen(name)+1)*sizeof(*nouv_nom)); 
+    strcpy(nouv_nom, name);  
+
 
     //créer un contact
     struct contact *contact = malloc(sizeof(*contact));
@@ -51,10 +51,13 @@ struct contact *supprime_contact(struct contact **list)
     if (*list == NULL){
         return NULL;
     }
-    struct contact *contact_courant = *list; // ici, contact_courant -> &contact
-    *list = contact_courant ->next;
-    contact_courant->next = NULL;
-    return contact_courant;
+    else{
+        struct contact *contact_courant = *list; // ici, contact_courant -> &contact
+        *list = contact_courant ->next;
+        contact_courant->next = NULL;
+        return contact_courant;
+    }
+
 }
 
 /*cherche un contact dans la liste, si rien a trouvé, retourner NULL, precedent qui sera utilise pour relier 2 contacts*/
@@ -91,7 +94,7 @@ struct contact *supprime_liste(struct contact **list, const char *nom)
     }
     else
     {
-        precedent->next = contact_supprime->next;
+        precedent->next = contact_supprime->next;  //supprimer le contact au millieu
 
     }
     contact_supprime->next = NULL;
@@ -142,10 +145,35 @@ char *changer_nom(struct contact *contact, const char *name)//mettre a jour le n
 void *changer_numero(struct contact *contact, const char *num)//mettre a jour le numéro d'un contact
 {
     //meme opération pour "numéro"
-    uint32_t len_num = strlen(num);
-    char *number = malloc((len_num+1)*sizeof(*number));
+    char *number = malloc((strlen(num)+1)*sizeof(*number));
     strcpy(number, num);
     contact->numero = number;
+}
+
+/*pour mettre en couleur*/
+void red () {
+  printf("\033[1;41m");
+}
+void rouge() {
+  printf("\033[1;31m");
+}
+void green() {
+  printf("\033[1;42m");
+}
+void cyon(){
+  printf("\033[0;33m");
+}
+void light_blue(){
+  printf("\033[0;32m");
+}
+void sous_ligne(){
+  printf("\033[0;4m");
+}
+void vert(){
+    printf("\033[0;32m");
+}
+void reset() {
+  printf("\033[0m");
 }
 
 /*afficher la liste*/
@@ -154,7 +182,14 @@ void print_list(struct contact *list)
     struct contact *contact_courant = list;
     //une boucle pour afficher les contacts
     while (contact_courant != NULL){
-        printf("name : %s | number  :  %s\n", contact_courant->nom, contact_courant->numero);
+        red();    //si marche pas avec votre ordinateur, l'enlever
+        printf("NAME\t");
+        reset();
+        printf(":%21s\t", contact_courant->nom);  //ici %21s permet l'output avoir un bon forma (aligner)
+        red();    //si marche pas avec votre ordinateur, l'enlever
+        printf("\tNUMERO\t");
+        reset();
+        printf(":\t%s", contact_courant->numero);
         printf("\n");
         contact_courant = contact_courant->next;
     }

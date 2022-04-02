@@ -20,6 +20,7 @@ int main(void)
     const char *names[4] = {
         "Colonel Moutarde",
         "Tartempion",
+        "jackson yang",
         "Caporal Ketchup",
         "Sergent Mayo"
     };

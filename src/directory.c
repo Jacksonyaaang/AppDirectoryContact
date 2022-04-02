@@ -35,7 +35,10 @@ struct dir *dir_create(uint32_t len)
       printf("allocation échoué \n");
       return 0;
     }
-    printf("la génération du directory --> OK!\n");
+    green();
+    printf("la génération du directory de taille %u --> OK!", len);
+    reset();
+    printf("\n");
     dir->TAILLE_TABLE = len;
     dir ->NB_CONTACT = 0;
     dir ->annu = annu;
@@ -193,6 +196,9 @@ void dir_delete(struct dir *dir, const char *name)
     struct contact **liste_contact = &((dir->annu)[hash(name, dir->TAILLE_TABLE)]);
     struct contact *contact_courant = supprime_liste(liste_contact, name);
     if (contact_courant ==NULL){
+      rouge();
+      printf("Dézolé, le nom « %s » n'existe pas sur ce contact, veillez d'abord l'ajouter.\nDonc afficher l'ancien director:", name);
+      reset();
       return;
     }
     else{
@@ -214,9 +220,19 @@ void dir_free(struct dir *dir)
       free_list_contact((dir->annu)[j]);
       j = j+1;
     }
-    free(dir->annu);
-    free(dir);
-    printf("free complited\n");
+    if (dir != NULL)
+    {
+      free(dir->annu);
+      free(dir);
+      dir = NULL;   //pour évider l'erreur de "Segment fault "
+      if (dir == NULL)
+      {
+        vert();
+        printf("free complited!!\n");
+        reset();
+      }
+    }
+    
 }
 
 /*
@@ -225,14 +241,20 @@ void dir_free(struct dir *dir)
 void dir_print(struct dir *dir)
 {
     (void)dir;
-  printf("\n\n__________________________________________________________annuaire\n\n");
-  printf("|nom\t\t\t|numéro\t\n");
-  printf("|\t\t\t|\t\t\n");
+  printf("\n\n\n___________________________");
+  sous_ligne();
+  printf("MON_Annuaire");
+  reset();
+  printf("_______________________________\n\n");
 	uint32_t i =0;
   while (i<dir->TAILLE_TABLE)
   {
     print_list((dir->annu)[i]);
     i=i+1;
   }
-	printf("__________________fin_____________________________________________\n\n");
+  printf("_____________________________");
+  sous_ligne();
+  printf("FIN_Annu");
+  reset();
+  printf("_________________________________\n\n\n\n");
 }
