@@ -15,6 +15,8 @@ int main(void)
     dir_insert(dir, "Colonel Moutarde", "06789435351");
     dir_insert(dir, "Caporal Ketchup", "0678346533");
     dir_insert(dir, "Sergent Mayo", "06723236533");
+    dir_insert(dir, "Jackson YANG", "01234567890");
+    dir_insert(dir, "Jiaxuan YANG", "02167664390");
     dir_print(dir);
     dir_free(dir);
 

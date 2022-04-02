@@ -125,7 +125,7 @@ char *recupere_nom(struct contact *contact)
     return contact->nom;
 }
 
-/*Retourne le numéro du contact passé.*/
+/*Retourne le numéro du contact.*/
 char *recupere_numero(struct contact *contact){
     return contact->numero;
 }
@@ -134,8 +134,7 @@ char *recupere_numero(struct contact *contact){
 char *changer_nom(struct contact *contact, const char *name)//mettre a jour le nom d'un contact
 {
     char *copie_num = contact->numero;
-    uint32_t len_nom = strlen(name);
-    char *nom = malloc((len_nom+1)*sizeof(*nom));
+    char *nom = malloc((strlen(name)+1)*sizeof(*nom));
     strcpy(nom, name);
     contact->nom = nom;
     return copie_num;

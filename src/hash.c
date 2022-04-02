@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdint.h>
+#include <hash.h>
 
 uint32_t hash(const char *str, uint32_t taille)
 {

@@ -10,7 +10,7 @@
 
 struct dir
 {
-  uint32_t NB_CONTACT;
+  uint32_t NB_CONTACT; 
   uint32_t TAILLE_TABLE;
   struct contact **annu;
 };
@@ -27,13 +27,13 @@ struct dir *dir_create(uint32_t len)
     if (dir == NULL)   //faillure de l'allocation
     {
       printf("allocation échoué \n");
-      return 0;
+      return NULL;
     }
     struct contact **annu = calloc(len, sizeof(*annu));
     if (annu == NULL)
     {
       printf("allocation échoué \n");
-      return 0;
+      return NULL;
     }
     green();
     printf("la génération du directory de taille %u --> OK!", len);
@@ -193,6 +193,7 @@ void dir_delete(struct dir *dir, const char *name)
 {
     (void)dir;
     (void)name;
+    uint32_t nb_place_occupe = dir->NB_CONTACT;
     struct contact **liste_contact = &((dir->annu)[hash(name, dir->TAILLE_TABLE)]);
     struct contact *contact_courant = supprime_liste(liste_contact, name);
     if (contact_courant ==NULL){
@@ -203,8 +204,11 @@ void dir_delete(struct dir *dir, const char *name)
     }
     else{
       free_contact(contact_courant);
-      dir->NB_CONTACT = dir->NB_CONTACT -1;
+      dir->NB_CONTACT = nb_place_occupe -1;
       redimension_suppression(dir);
+      vert();
+      printf("\n\n« %s » a été supprimé sur ce directory!\n\n", name);
+      reset();
     }
 }
 
@@ -224,7 +228,7 @@ void dir_free(struct dir *dir)
     {
       free(dir->annu);
       free(dir);
-      dir = NULL;   //pour évider l'erreur de "Segment fault "
+      dir = NULL;   //pour évider l'erreur de "Segment fault " (pointeur vide)
       if (dir == NULL)
       {
         vert();
