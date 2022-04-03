@@ -10,7 +10,8 @@ TESTS = directory-01-test \
 	directory-04-test \
 	directory-05-test \
 	directory-06-test \
-	directory-07-test
+	directory-07-test \
+	directory-08-test
 SRC = $(TESTS:=.c)
 OBJ = $(TESTS:=.o)
 

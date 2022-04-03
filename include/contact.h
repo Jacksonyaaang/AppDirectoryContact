@@ -50,7 +50,7 @@ extern char *changer_numero(struct contact *contact, const char *num);//mettre a
 /*retourner le nom du contact*/
 extern char *recupere_nom(struct contact *contact);
 
-/*Retourne le numéro du contact passé.*/
+/*Retourne le numéro du contact.*/
 extern char *recupere_numero(struct contact *contact);
 
 #endif /* _CONTACT_H_ */
