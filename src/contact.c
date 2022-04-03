@@ -133,20 +133,22 @@ char *recupere_numero(struct contact *contact){
 /*mettre a jour les contenus d'un contact*/
 char *changer_nom(struct contact *contact, const char *name)//mettre a jour le nom d'un contact
 {
-    char *copie_num = contact->numero;
+    char *copie_name = contact->nom;
     char *nom = malloc((strlen(name)+1)*sizeof(*nom));
     strcpy(nom, name);
     contact->nom = nom;
-    return copie_num;
+    return copie_name;
 
 }
 
-void *changer_numero(struct contact *contact, const char *num)//mettre a jour le numéro d'un contact
+char *changer_numero(struct contact *contact, const char *num)//mettre a jour le numéro d'un contact
 {
     //meme opération pour "numéro"
+    char *copie_num = contact->numero;
     char *number = malloc((strlen(num)+1)*sizeof(*number));
     strcpy(number, num);
     contact->numero = number;
+    return copie_num;
 }
 
 /*pour mettre en couleur*/

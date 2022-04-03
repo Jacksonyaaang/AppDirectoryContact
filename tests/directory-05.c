@@ -17,7 +17,7 @@ int main(void)
     dir_insert(dir, "Sergent Mayo", "06723236533");
     dir_print(dir);
 
-    const char *names[4] = {
+    const char *names[5] = {
         "Colonel Moutarde",
         "Tartempion",
         "jackson yang",

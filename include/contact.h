@@ -45,7 +45,7 @@ extern void reset();
 
 extern char *changer_nom(struct contact *contact, const char *name);//mettre a jour le nom d'un contact
 
-extern void *changer_numero(struct contact *contact, const char *num);//mettre a jour le numéro d'un contact
+extern char *changer_numero(struct contact *contact, const char *num);//mettre a jour le numéro d'un contact
 
 /*retourner le nom du contact*/
 extern char *recupere_nom(struct contact *contact);

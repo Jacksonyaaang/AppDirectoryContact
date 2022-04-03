@@ -12,6 +12,7 @@ int main(void)
 {
     struct dir *dir = dir_create(5);
     dir_insert(dir, "Colonel Moutarde", "06789435351");
+    dir_insert(dir, "jay chou", "05647849533");
     dir_print(dir);
     dir_free(dir);
 
